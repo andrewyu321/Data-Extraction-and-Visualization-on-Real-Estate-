@@ -144,8 +144,12 @@ def get_price():
 
 
 
-baths = input("What number of baths do you want? ")
-beds = input("What number of beds do you want? ")
+baths = input("What number of baths do you want: ")
+beds = input("What number of beds do you want: ")
+lower_bound = input('What is the lowest price in monthly rent you would like to see: ')
+upper_bound = input('What is the highest price in monthly rent you would like to see: ')
+
+
 WEBSITE = f"https://mlstoronto.searchrealty.co/search?sortby=latest&acl_city=Toronto%2C+ON&minbeds={beds}&maxbeds={beds}&minbaths={baths}&maxbaths={baths}&haslat=1&haslong=1&page=1&type=grid&listingtype=Rental"
 
 chrome_driver_path = "C:\Chrome Driver\chromedriver.exe"
@@ -199,10 +203,7 @@ data_dict = {
 }
 data = pd.DataFrame(data_dict)
 
-#asks for a price range for rent
 
-lower_bound = 1600
-upper_bound = 4000
 
 sorted_df = data.sort_values(by=['prices']).reset_index(drop=True).drop(df.columns[0], axis=1)
 
